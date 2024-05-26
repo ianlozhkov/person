@@ -1,19 +1,24 @@
+import { IsInt, IsString, IsUUID, IsNotEmpty, MinLength, MaxLength, IsBoolean } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
-export interface PersonI {
-    id?: number,
-    fullname?: string,
-    age?: number,
-}
 
 @Entity()
 export class Person {
+    @IsUUID(4)
     @PrimaryGeneratedColumn()
-    id: number;
+    id: string;
 
+    @IsString()
+    @MinLength(3)
+    @MaxLength(256)
     @Column({ unique: true })
     fullName: string;
 
+    @IsInt()
+    @IsNotEmpty()
     @Column()
     age: number;
+
+    @IsBoolean()
+    @Column()
+    isDeleted: boolean;
 }
