@@ -87,6 +87,25 @@ function reduceArr<T, U>(arr: T[], func: (s: U, x: T) => U, init: U): U {
     return res;
 }
 
+function bubbleSort(arr: number[]): number[] {
+   for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > arr[i+1]) {
+            const x = arr[i];
+
+            arr[i] = arr[i+1];
+            arr[i+1] = x;
+
+            if(i !== 0) {
+                i = i - 2;
+            }
+        }
+    }
+    return arr;
+}
+
+console.log(bubbleSort(arr3))
+
+
 
 // console.log(minArr(arr1));
 // console.log(minArr(arr2));
@@ -104,8 +123,8 @@ function reduceArr<T, U>(arr: T[], func: (s: U, x: T) => U, init: U): U {
 // console.log(evenArr(arr2));
 // console.log(evenArr(arr3));
 
-console.log(mapArr(arr3, (x) => ++x));
+// console.log(mapArr(arr3, (x) => ++x));
 
-console.log(filterArr(arr3, (x) => (x > 54)));
+// console.log(filterArr(arr3, (x) => (x > 54)));
 
-console.log(reduceArr(arr3, (s, x) => s + x, 0))
+// console.log(reduceArr(arr3, (s, x) => s + x, 0));
