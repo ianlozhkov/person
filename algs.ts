@@ -52,18 +52,60 @@ function evenArr(arr: number[]): number[] {
     return evenArray;
 }
 
-console.log(minArr(arr1));
-console.log(minArr(arr2));
-console.log(minArr(arr3));
+type Callback<T, U> = (x: T) => U;
 
-console.log(maxArr(arr1));
-console.log(maxArr(arr2));
-console.log(maxArr(arr3));
+function mapArr<T, U>(arr: T[], func: (x: T) => U): U[] {
+    let resArr: U[] = [];
 
-console.log(avgArr(arr1));
-console.log(avgArr(arr2));
-console.log(avgArr(arr3));
+    for (let i = 0; i < arr.length; i++) {
+        resArr.push(func(arr[i]));
+    }
 
-console.log(evenArr(arr1));
-console.log(evenArr(arr2));
-console.log(evenArr(arr3));
+    return resArr;
+}
+
+function filterArr<T>(arr: T[], func: (x: T) => boolean): T[] {
+    let resArr: T[] = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i])) {
+            resArr.push(arr[i]);
+        }
+        
+    }
+
+    return resArr;
+}
+
+function reduceArr<T, U>(arr: T[], func: (s: U, x: T) => U, init: U): U {
+    let res = init;
+
+    for (let i = 0; i < arr.length; i++) {
+        res = func(res, arr[i]);
+    }
+
+    return res;
+}
+
+
+// console.log(minArr(arr1));
+// console.log(minArr(arr2));
+// console.log(minArr(arr3));
+
+// console.log(maxArr(arr1));
+// console.log(maxArr(arr2));
+// console.log(maxArr(arr3));
+
+// console.log(avgArr(arr1));
+// console.log(avgArr(arr2));
+// console.log(avgArr(arr3));
+
+// console.log(evenArr(arr1));
+// console.log(evenArr(arr2));
+// console.log(evenArr(arr3));
+
+console.log(mapArr(arr3, (x) => ++x));
+
+console.log(filterArr(arr3, (x) => (x > 54)));
+
+console.log(reduceArr(arr3, (s, x) => s + x, 0))
